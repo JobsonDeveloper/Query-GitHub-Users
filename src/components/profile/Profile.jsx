@@ -10,7 +10,10 @@ export const Profile = () => {
                 <h1>Jobson Oliveira</h1>
                 <S.WrapperUserName>
                     <h3>Username: </h3>
-                    <span>Oliveira</span>
+                    <a 
+                    href="https://avatars.githubusercontent.com" 
+                    target="_blanck"
+                    rel="noreferrer">Oliveira</a>
                 </S.WrapperUserName>
 
                 <S.WrapperStatusCount>
