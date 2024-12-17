@@ -1,13 +1,17 @@
 import React from "react";
 import * as S from "./StyledElements"; // Renomeando o componente
+import UseGithub from "../../hooks/GithubHooks";
 
 export const Profile = () => {
+
+    const {githubState} = UseGithub()
+
     return (
         <S.Wrapper>
             <S.WrapperImage src="https://avatars.githubusercontent.com/u/39008435?v=4" alt="Avatar do usuário" />
 
             <S.WrapperInfoUser>
-                <h1>Jobson Oliveira</h1>
+                <h1>{githubState.user.name}</h1>
                 <S.WrapperUserName>
                     <h3>Username: </h3>
                     <a 

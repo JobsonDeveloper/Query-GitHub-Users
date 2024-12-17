@@ -6,6 +6,7 @@ import { Repositories } from "./components/repositories/Repositories";
 import { Starreds } from "./components/starreds/Starreds";
 import { ButtonTabs } from "./components/buttons/ButtonsTabs";
 import { WrapperButtons } from "./components/wrapperButtons/WrapperButtons";
+import GithubProvider from "./providers/GithubProvider";
 
 const App = () => {
   const [infoTable, setInfoTable] = useState("");
@@ -13,7 +14,6 @@ const App = () => {
   return (
     <main>
       <GithubProvider>
-
         <ResetCss />
         <Layout>
           <Profile />
@@ -31,6 +31,7 @@ const App = () => {
           }
         </Layout>
       </GithubProvider>
+
     </main>
   );
 }
