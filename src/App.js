@@ -12,22 +12,25 @@ const App = () => {
 
   return (
     <main>
-      <ResetCss />
-      <Layout>
-        <Profile />
-        <WrapperButtons>
-          <ButtonTabs onClick={() => setInfoTable("repositories")}>Repositories</ButtonTabs>
-          <ButtonTabs onClick={() => setInfoTable("starreds")}>Starreds</ButtonTabs>
-        </WrapperButtons>
+      <GithubProvider>
 
-        {infoTable === "repositories" &&
-          <Repositories />
-        }
+        <ResetCss />
+        <Layout>
+          <Profile />
+          <WrapperButtons>
+            <ButtonTabs onClick={() => setInfoTable("repositories")}>Repositories</ButtonTabs>
+            <ButtonTabs onClick={() => setInfoTable("starreds")}>Starreds</ButtonTabs>
+          </WrapperButtons>
 
-        {infoTable === "starreds" &&
-          <Starreds />
-        }
-      </Layout>
+          {infoTable === "repositories" &&
+            <Repositories />
+          }
+
+          {infoTable === "starreds" &&
+            <Starreds />
+          }
+        </Layout>
+      </GithubProvider>
     </main>
   );
 }
