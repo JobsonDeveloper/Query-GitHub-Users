@@ -4,22 +4,42 @@ import UseGithub from "../../hooks/GithubHooks";
 
 export const Profile = () => {
 
-    const {githubState} = UseGithub()
+    const { githubState } = UseGithub()
 
     return (
         <S.Wrapper>
-            <S.WrapperImage src="https://avatars.githubusercontent.com/u/39008435?v=4" alt="Avatar do usuário" />
+            <S.WrapperImage src={githubState.user.avatar_url} alt="Avatar do usuário" />
 
             <S.WrapperInfoUser>
                 <h1>{githubState.user.name}</h1>
 
-                <S.WrapperUserName>
+                <S.WrapperUserGeneric>
                     <h3>Username: </h3>
-                    <a 
-                    href={githubState.user.html_url} 
-                    target="_blanck"
-                    rel="noreferrer">{githubState.user.login}</a>
-                </S.WrapperUserName>
+                    <a
+                        href={githubState.user.html_url}
+                        target="_blanck"
+                        rel="noreferrer">{githubState.user.login}</a>
+                </S.WrapperUserGeneric>
+
+                <S.WrapperUserGeneric>
+                    <h3>Company: </h3>
+                    <span>{githubState.user.company}</span>
+                </S.WrapperUserGeneric>
+
+                <S.WrapperUserGeneric>
+                    <h3>Location: </h3>
+                    <span>{githubState.user.location}</span>
+                </S.WrapperUserGeneric>
+
+                <S.WrapperUserGeneric>
+                    <h3>Blog: </h3>
+                    <a
+                        href={githubState.user.blog}
+                        target="_blanck"
+                        rel="noreferrer">
+                        {githubState.user.blog}
+                    </a>
+                </S.WrapperUserGeneric>
 
                 <S.WrapperStatusCount>
                     <div>
@@ -36,7 +56,7 @@ export const Profile = () => {
                         <h4>Followings</h4>
                         <span>{githubState.user.following}</span>
                     </div>
-                    
+
                     <div>
                         <h4>Repos</h4>
                         <span>{githubState.user.public_repos}</span>

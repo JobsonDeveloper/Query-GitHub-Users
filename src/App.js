@@ -7,32 +7,41 @@ import { Starreds } from "./components/starreds/Starreds";
 import { ButtonTabs } from "./components/buttons/ButtonsTabs";
 import { WrapperButtons } from "./components/wrapperButtons/WrapperButtons";
 import GithubProvider from "./providers/GithubProvider";
+import UseGithub from "./hooks/GithubHooks";
 
 const App = () => {
   const [infoTable, setInfoTable] = useState("");
+  const { githubState } = UseGithub();
 
   return (
-    <main>
-      <GithubProvider>
-        <ResetCss />
-        <Layout>
-          <Profile />
-          <WrapperButtons>
-            <ButtonTabs onClick={() => setInfoTable("repositories")}>Repositories</ButtonTabs>
-            <ButtonTabs onClick={() => setInfoTable("starreds")}>Starreds</ButtonTabs>
-          </WrapperButtons>
+    <>
+      <Layout>
+        {githubState.hasUser ?
+          githubState.loading ? <section>Loading...</section> :
+            <>
+              <Profile />
 
-          {infoTable === "repositories" &&
-            <Repositories />
-          }
+              <WrapperButtons>
+                <ButtonTabs onClick={() => setInfoTable("repositories")}>Repositories</ButtonTabs>
+                <ButtonTabs onClick={() => setInfoTable("starreds")}>Starreds</ButtonTabs>
+              </WrapperButtons>
 
-          {infoTable === "starreds" &&
-            <Starreds />
-          }
-        </Layout>
-      </GithubProvider>
+              {infoTable === "repositories" &&
+                <Repositories />
+              }
 
-    </main>
+              {infoTable === "starreds" &&
+                <Starreds />
+              }
+            </>
+
+          :
+          <section>
+            Nenhum usuário pesquisado
+          </section>
+        }
+      </Layout>
+    </>
   );
 }
 
