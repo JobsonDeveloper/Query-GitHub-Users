@@ -13,6 +13,7 @@ const GithubProvider = ({ children }) => {
         hasUser: false,
         loading: false,
         user: {
+            id: undefined,
             avatar_url: undefined,
             login: undefined,
             name: undefined,
@@ -40,6 +41,7 @@ const GithubProvider = ({ children }) => {
             .then((data) => {
 
                 const {
+                    id,
                     avatar_url,
                     login,
                     name,
@@ -53,12 +55,11 @@ const GithubProvider = ({ children }) => {
                     public_repos
                 } = data.data;
 
-                console.log(data.data);
-
                 setGithubState(prevState => ({
                     ...prevState,
                     hasUser: true,
                     user: {
+                        id: id,
                         avatar_url: avatar_url,
                         login: login,
                         name: name,
@@ -80,9 +81,33 @@ const GithubProvider = ({ children }) => {
             })
     }
 
+    const getUserRepos = async (username) => {
+        await Api.get(`users/${username}/repos`)
+            .then((data) => {
+                setGithubState(prevState => ({
+                    ...prevState,
+                    repositories: data.data
+                }))
+
+            })
+    }
+
+    const getUserStarreds = async (username) => {
+        await Api.get(`users/${username}/starred`)
+            .then((data) => {
+                setGithubState(prevState => ({
+                    ...prevState,
+                    starred: data.data
+                }))
+
+            })
+    }
+
     const contextValue = {
         githubState,
         getUser: useCallback((username) => getUser(username), []),
+        getUserRepos: useCallback((username) => getUserRepos(username), []),
+        getUserStarreds: useCallback((username) => getUserStarreds(username), []),
     }
 
     return (

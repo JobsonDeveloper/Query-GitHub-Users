@@ -8,6 +8,7 @@ import { ButtonTabs } from "./components/buttons/ButtonsTabs";
 import { WrapperButtons } from "./components/wrapperButtons/WrapperButtons";
 import GithubProvider from "./providers/GithubProvider";
 import UseGithub from "./hooks/GithubHooks";
+import { NoSearch } from "./components/noSearch/NoSearch";
 
 const App = () => {
   const [infoTable, setInfoTable] = useState("");
@@ -36,9 +37,7 @@ const App = () => {
             </>
 
           :
-          <section>
-            Nenhum usuário pesquisado
-          </section>
+          <NoSearch />
         }
       </Layout>
     </>

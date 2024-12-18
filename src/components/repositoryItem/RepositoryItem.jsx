@@ -1,17 +1,18 @@
 import React from "react";
+import * as S from "./StyledRepository";
 
 export const RepositoryItem = ({props}) => {
 
     const {Name, linkToRepo, fullName} = props;
 
     return (
-        <section>
-            <h2>{ Name }</h2>
-            <h4>Full Name:</h4>
-            <a
+        <S.Wrapper>
+            <S.WrapperTitle>{ Name }</S.WrapperTitle>
+            <S.WrapperFullName>Full Name:</S.WrapperFullName>
+            <S.WrapperLink
                 href={linkToRepo}
                 target="_blanck"
-                rel="noreferrer">{ fullName }</a>
-        </section>
+                rel="noreferrer">{ fullName }</S.WrapperLink>
+        </S.Wrapper>
     )
 }
